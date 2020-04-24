@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="add-form">
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="name" value="" formControlName="name" />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="code" value="" formControlName="code" />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="link" value="" formControlName="link" />
+        </mat-form-field>
+      </div>
+      <button type="submit" mat-flat-button color="accent" [disabled]="!form.valid">Create</button>
+    </form>
+  </div>
+</div>
