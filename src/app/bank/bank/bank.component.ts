@@ -97,6 +97,8 @@ export class BankComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.data.findIndex((e) => e.code.toLowerCase() === code.toLowerCase()) >= 0
   }
 
+  applyFilter(event) {}
+
   save(id) {
     const name = this.name.nativeElement.value
     const code = this.code.nativeElement.value
