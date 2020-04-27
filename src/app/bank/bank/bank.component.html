@@ -1,6 +1,11 @@
 <div class="container">
   <div class="top-content">
     <div class="left-content">
+      <h2 class="header-line">Bank dashboard</h2>
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" />
+      </mat-form-field>
       <div class="example-container mat-elevation-z8">
         <div class="example-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
           <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
@@ -23,10 +28,18 @@
             <ng-container matColumnDef="action">
               <th mat-header-cell *matHeaderCellDef>#</th>
               <td mat-cell *matCellDef="let row">
-                <mat-icon *ngIf="!editMode" title="edit" (click)="edit(row._id)" color="primary">edit</mat-icon>
-                <mat-icon *ngIf="editMode" title="save" (click)="save(row._id)" color="primary">save</mat-icon>
-                <mat-icon *ngIf="editMode" title="cancel" (click)="cancel()" color="accent">cancel</mat-icon>
-                <mat-icon *ngIf="!editMode" title="delete" (click)="delete(row._id)" color="primary">delete</mat-icon>
+                <mat-icon *ngIf="!editMode" title="edit" (click)="edit(row._id)" color="primary"
+                  >edit</mat-icon
+                >
+                <mat-icon *ngIf="editMode" title="save" (click)="save(row._id)" color="primary"
+                  >save</mat-icon
+                >
+                <mat-icon *ngIf="editMode" title="cancel" (click)="cancel()" color="accent"
+                  >cancel</mat-icon
+                >
+                <mat-icon *ngIf="!editMode" title="delete" (click)="delete(row._id)" color="primary"
+                  >delete</mat-icon
+                >
               </td>
             </ng-container>
 
@@ -86,12 +99,18 @@
       </div>
     </div>
     <div class="right-content">
+      <add-bank (onSave)="updateData()"></add-bank>
+    </div>
+  </div>
+  <div class="bottom-content">
+    <div class="left-content">
+      <h2 class="header-line">Product dashboard</h2>
       <div class="shrink bank-detail">
         <mat-form-field>
           <mat-label>Filter</mat-label>
           <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" />
         </mat-form-field>
-
+  
         <div class="mat-elevation-z8">
           <table mat-table [dataSource]="productData" matSort>
             <!-- ID Column -->
@@ -99,31 +118,32 @@
               <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
               <td mat-cell *matCellDef="let row"></td>
             </ng-container>
-
+  
             <!-- Progress Column -->
             <ng-container matColumnDef="name">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
               <td mat-cell *matCellDef="let row">{{ row.name }}</td>
             </ng-container>
-
+  
             <!-- Name Column -->
             <ng-container matColumnDef="content">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Content</th>
               <td mat-cell *matCellDef="let row">{{ contentToString(row.content) }}</td>
             </ng-container>
-
+  
             <!-- Color Column -->
-
+  
             <tr mat-header-row *matHeaderRowDef="productColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: productColumns"></tr>
           </table>
-
+  
           <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
         </div>
       </div>
+
     </div>
-  </div>
-  <div class="bottom add-bank">
-    <add-bank (onSave)="updateData()"></add-bank>
+    <div class="right-content">
+      <add-product></add-product>
+    </div>
   </div>
 </div>

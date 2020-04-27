@@ -7,6 +7,7 @@ import { AddProductComponent } from './add-product/add-product.component'
 import { AddBankComponent } from './add-bank/add-bank.component'
 import { MaterialModule } from '../shared/modules/material.module'
 import { BasicModule } from '../shared/modules/basic.module'
+import { AddContentComponent } from './add-content/add-content.component'
 
 const routes: Routes = [
   { path: 'product', component: ProductComponent },
@@ -14,8 +15,15 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [ProductComponent, BankComponent, AddProductComponent, AddBankComponent],
+  declarations: [
+    ProductComponent,
+    BankComponent,
+    AddProductComponent,
+    AddBankComponent,
+    AddContentComponent,
+  ],
   imports: [RouterModule.forChild(routes), CommonModule, MaterialModule, BasicModule],
   bootstrap: [BankComponent],
+  entryComponents: [AddContentComponent],
 })
 export class BankModule {}

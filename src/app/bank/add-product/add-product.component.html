@@ -1,1 +1,35 @@
-<p>add-product works!</p>
+<div class="container">
+  <div class="add-form">
+    <form [formGroup]="productForm" (ngSubmit)="save()">
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="name" value="" formControlName="name" />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="content" value="" formControlName="content" />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="tag" value="" formControlName="tag" />
+        </mat-form-field>
+        <mat-select
+          formControlName="bank"
+          placeholder="Bank"
+          [(ngModel)]="selectedValue"
+          name="bank"
+        >
+          <mat-option *ngFor="let bank of banks" [value]="bank.code">
+            {{ bank.name }}
+          </mat-option>
+        </mat-select>
+      </div>
+      <div class="button-holder">
+        <button (click)="addContent()" type="button" mat-flat-button color="primary">
+          Add content
+        </button>
+        <button type="submit" mat-flat-button color="accent" [disabled]="!productForm.valid">
+          Create
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

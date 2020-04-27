@@ -1,0 +1,23 @@
+<form [formGroup]="contentForm">
+  <mat-form-field>
+    <input formControlName="name" matInput placeholder="name" value="content name" />
+  </mat-form-field>
+  <mat-form-field>
+    <input formControlName="content" matInput placeholder="content" value="content" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea rows="3" formControlName="tags" matInput placeholder="tags" value="">
+    </textarea>
+  </mat-form-field>
+  <button
+    color="primary"
+    [disabled]="!contentForm.valid"
+    (click)="save()"
+    mat-icon-button
+    type="submit"
+  >
+    <mat-icon>save</mat-icon>
+  </button>
+  <button color="accent" mat-icon-button (click)="cancel()"><mat-icon>cancel</mat-icon></button>
+</form>
